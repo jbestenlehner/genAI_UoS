@@ -1,5 +1,5 @@
 
-# Context engineering and agent AI
+# Context engineering and agentic AI
 
 **by Professor Andrew Garrard MEng(hons) PhD CEng FIMechE PFHEA** 
 
