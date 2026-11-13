@@ -16,3 +16,6 @@ parts:
   - caption: Part 4
     chapters:
     - file: docs/part4
+  - caption: Part 5
+    chapters:
+    - file: docs/part5
