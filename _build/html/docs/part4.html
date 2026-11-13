@@ -1,0 +1,646 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Prompt Engineering &amp; Token Efficiency &#8212; Technical Drawing for Chemical Engineers</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/part4';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Responsible &amp; Ethical Use of Generative AI" href="part3.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/UOSLogo_Primary_Violet_RGB.png" class="logo__image only-light" alt="Technical Drawing for Chemical Engineers - Home"/>
+    <script>document.write(`<img src="../_static/UOSLogo_Primary_Violet_RGB.png" class="logo__image only-dark" alt="Technical Drawing for Chemical Engineers - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Generative AI assisted learning
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 1</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="part1.html">Generative AI as an assistive technology</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 2</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="part2.html">NotebookLM to support learning</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 3</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="part3.html">Responsible &amp; Ethical Use of Generative AI</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 4</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Prompt Engineering &amp; Token Efficiency</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/docs/part4.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Prompt Engineering & Token Efficiency</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-open-access-reference-library">Sample Open-Access Reference Library</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#token-economics">1. Token Economics</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-concepts">Key Concepts</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prompt-architecture-for-literature-analysis">2. Prompt Architecture for Literature Analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#structural-template">Structural Template</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#refactoring-exercise">Refactoring Exercise</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quantitative-property-parameter-extraction">3. Quantitative Property &amp; Parameter Extraction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-exercise-electrospun-scaffold-characterisation">Hands-on Exercise: Electrospun Scaffold Characterisation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-paper-synthesis-literature-matrix-construction">4. Multi-Paper Synthesis &amp; Literature Matrix Construction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-study-comparative-prompt">Multi-Study Comparative Prompt</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grounding-verification-researcher-checklist">5. Grounding, Verification &amp; Researcher Checklist</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="prompt-engineering-token-efficiency">
+<h1>Prompt Engineering &amp; Token Efficiency<a class="headerlink" href="#prompt-engineering-token-efficiency" title="Link to this heading">#</a></h1>
+<p><strong>Objective:</strong> Learn prompt architecture, token budget optimisation, context reduction and using GenAU to automatically read academic research papers and organise them into a structured comparison table or matrix.</p>
+<section id="sample-open-access-reference-library">
+<h2>Sample Open-Access Reference Library<a class="headerlink" href="#sample-open-access-reference-library" title="Link to this heading">#</a></h2>
+<p>This tutorial references the following peer-reviewed, open-access publications for hands-on prompting exercises:</p>
+<ol class="arabic simple">
+<li><p><strong>GelMA Hydrogels:</strong> Yue et al., <em>“Synthesis, properties, and biomedical applications of gelatin methacryloyl (GelMA) hydrogels.”</em> <em>Biomaterials</em> (2015). <a class="reference external" href="https://doi.org/10.1016/j.biomaterials.2015.06.026">DOI: 10.1016/j.biomaterials.2015.06.026</a></p></li>
+<li><p><strong>Electrospun Nanofibers:</strong> Li et al., <em>“Electrospun nanofibrous structure: A novel scaffold for tissue engineering.”</em> <em>Journal of Biomedical Materials Research</em> (2002). <a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/11932882/">PubMed: 11932882</a></p></li>
+<li><p><strong>Vascular Grafts:</strong> Dahl et al., <em>“Readily Available Tissue-Engineered Vascular Grafts.”</em> <em>Science Translational Medicine</em> (2011). <a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/21307353/">PubMed: 21307353</a></p></li>
+<li><p><strong>Cancer Nanocarriers:</strong> Peer et al., <em>“Nanocarriers as an emerging platform for cancer therapy.”</em> <em>Nature Nanotechnology</em> (2007). <a class="reference external" href="https://www.nature.com/articles/nnano.2007.387">Nature: nnano.2007.387</a></p></li>
+<li><p><strong>Titanium Nanotubes:</strong> Roy et al., <em>“</em><span class="math notranslate nohighlight">\(TiO_2\)</span> <em>nanotubes: synthesis and applications.”</em> <em>Angewandte Chemie</em> (2011). <a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/21394857/">PubMed: 21394857</a></p></li>
+</ol>
+<p><em>Note: Be careful with content under copyright and other none open-access materials.</em></p>
+</section>
+<section id="token-economics">
+<h2>1. Token Economics<a class="headerlink" href="#token-economics" title="Link to this heading">#</a></h2>
+<section id="key-concepts">
+<h3>Key Concepts<a class="headerlink" href="#key-concepts" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Token Math in Scientific Manuscripts:</strong> In Google Gemini, <span class="math notranslate nohighlight">\(1\text{ token} \approx 4\text{ characters}\)</span> or <span class="math notranslate nohighlight">\(\approx 0.75\text{ words}\)</span>. A 10-page article from <em>Biomaterials</em> or <em>IEEE Transactions on Biomedical Engineering</em> averages <span class="math notranslate nohighlight">\(8,000\)</span> to <span class="math notranslate nohighlight">\(14,000\text{ tokens}\)</span> when including chemical formulas, gene markers, and experimental tables.</p></li>
+<li><p><strong>The Cost of Context Bloat:</strong> Uploading five 30-page PDF papers simultaneously (<span class="math notranslate nohighlight">\(&gt;60,000\text{ tokens}\)</span>) consumes extensive processing time and can reduce retrieval accuracy for specific quantitative metrics (such as Young’s modulus or cell seeding density).</p></li>
+<li><p><strong>Targeted Section Slicing:</strong> Extracting only the <em>Methods</em> and <em>Results</em> sections reduces token usage by <span class="math notranslate nohighlight">\(60\text{--}80\%\)</span> while improving extraction accuracy.</p></li>
+</ul>
+</section>
+</section>
+<section id="prompt-architecture-for-literature-analysis">
+<h2>2. Prompt Architecture for Literature Analysis<a class="headerlink" href="#prompt-architecture-for-literature-analysis" title="Link to this heading">#</a></h2>
+<p>Vague prompts consume unnecessary tokens by forcing the model to generate generic background information. Use the <strong>RTCE Framework</strong> (Role, Task, Context, Execution) to eliminate generic conversational filler and direct Gemini straight to actionable research insights:</p>
+<ul class="simple">
+<li><p><strong>Role:</strong> Set the domain expertise (e.g., Biomaterials Engineer specializing in electrospun scaffolds).</p></li>
+<li><p><strong>Task:</strong> State the precise analytical objective.</p></li>
+<li><p><strong>Context:</strong> Provide the relevant subfield, material class, or physiological application.</p></li>
+<li><p><strong>Execution/Constraints:</strong> Define output structure (e.g., Markdown table, JSON schema, specific units like <span class="math notranslate nohighlight">\(\mathrm{MPa}\)</span> or <span class="math notranslate nohighlight">\(\mathrm{g/cm^3}\)</span>).</p></li>
+</ul>
+<p>If unsure what Markdown table or JSON schema is, just ask Gemini.</p>
+<section id="structural-template">
+<h3>Structural Template<a class="headerlink" href="#structural-template" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">ROLE</span> <span class="o">/</span> <span class="n">DOMAIN</span> <span class="n">SPECIALISATION</span><span class="p">]</span>
+<span class="n">Act</span> <span class="k">as</span> <span class="n">a</span> <span class="n">Senior</span> <span class="n">Biomaterials</span> <span class="n">Scientist</span> <span class="n">specialising</span> <span class="ow">in</span> <span class="n">hydrogels</span> <span class="ow">and</span>
+<span class="n">tissue</span> <span class="n">scaffolds</span><span class="o">.</span>
+
+<span class="p">[</span><span class="n">CONTEXT</span><span class="p">]</span>
+<span class="n">Evaluating</span> <span class="n">photopolymerised</span> <span class="n">hydrogels</span> <span class="k">for</span> <span class="n">cartilage</span> <span class="n">tissue</span> <span class="n">repair</span> <span class="n">based</span>
+<span class="n">on</span> <span class="n">Yue</span> <span class="n">et</span> <span class="n">al</span><span class="o">.</span><span class="p">,</span> <span class="mi">2015</span> <span class="p">(</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">doi</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="mf">10.1016</span><span class="o">/</span><span class="n">j</span><span class="o">.</span><span class="n">biomaterials</span><span class="mf">.2015.06.026</span><span class="p">)</span><span class="o">.</span>
+
+<span class="p">[</span><span class="n">TASK</span><span class="p">]</span>
+<span class="n">Analyse</span> <span class="n">the</span> <span class="n">structural</span> <span class="ow">and</span> <span class="n">mechanical</span> <span class="n">properties</span> <span class="n">of</span> <span class="n">GelMA</span> <span class="n">hydrogels</span>
+<span class="n">described</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">provided</span> <span class="n">text</span> <span class="n">snippet</span><span class="o">.</span>
+
+<span class="p">[</span><span class="n">EXECUTION</span> <span class="o">&amp;</span> <span class="n">CONSTRAINTS</span><span class="p">]</span>
+<span class="o">-</span> <span class="n">Output</span> <span class="nb">format</span><span class="p">:</span> <span class="n">Bulleted</span> <span class="nb">list</span> <span class="n">categorised</span> <span class="n">by</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="n">Synthesis</span> <span class="n">Conditions</span><span class="p">,</span>
+<span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="n">Mechanical</span> <span class="n">Strength</span><span class="p">,</span> <span class="ow">and</span> <span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="n">In</span><span class="o">-</span><span class="n">Vitro</span> <span class="n">Biocompatibility</span><span class="o">.</span>
+<span class="o">-</span> <span class="n">Include</span> <span class="n">explicit</span> <span class="n">quantitative</span> <span class="n">metrics</span> <span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">g</span><span class="o">.</span><span class="p">,</span> <span class="n">stiffness</span> <span class="ow">in</span> <span class="n">kPa</span><span class="p">,</span>
+<span class="n">swelling</span> <span class="n">ratio</span><span class="p">,</span> <span class="n">cell</span> <span class="n">viability</span> <span class="o">%</span><span class="p">)</span><span class="o">.</span>
+<span class="o">-</span> <span class="n">Omit</span> <span class="n">general</span> <span class="n">introductory</span> <span class="n">prose</span> <span class="ow">or</span> <span class="n">conclusions</span><span class="o">.</span>
+
+</pre></div>
+</div>
+</section>
+<section id="refactoring-exercise">
+<h3>Refactoring Exercise<a class="headerlink" href="#refactoring-exercise" title="Link to this heading">#</a></h3>
+<ul>
+<li><p>❌ <strong>Unoptimised Prompt (Heavy token cost, unconstrained prose):</strong></p>
+<blockquote>
+<div><p>“Tell me everything about GelMA hydrogels from the Yue et al. paper, what are they made of, how strong are they, and are they good for cells?”</p>
+</div></blockquote>
+</li>
+<li><p>✅ <strong>Optimiesd RTCE Prompt (Lean input, structured output):</strong></p>
+<blockquote>
+<div><p>“Act as a Biomaterials Engineer. Extract the hydrogel synthesis parameters and mechanical performance metrics from the abstract below (<a class="reference external" href="https://doi.org/10.1016/j.biomaterials.2015.06.026">Yue et al., 2015</a>).
+Format as a 3-row table: <code class="docutils literal notranslate"><span class="pre">Parameter</span></code> | <code class="docutils literal notranslate"><span class="pre">Value</span> <span class="pre">/</span> <span class="pre">Metric</span></code> | <code class="docutils literal notranslate"><span class="pre">Testing</span> <span class="pre">Condition</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;abstract&gt;</span></code> [Insert Abstract Text] <code class="docutils literal notranslate"><span class="pre">&lt;/abstract&gt;</span></code>”</p>
+</div></blockquote>
+</li>
+</ul>
+</section>
+</section>
+<section id="quantitative-property-parameter-extraction">
+<h2>3. Quantitative Property &amp; Parameter Extraction<a class="headerlink" href="#quantitative-property-parameter-extraction" title="Link to this heading">#</a></h2>
+<p>When mining physical and biological properties across experimental papers, prompt Gemini to standardise units and strictly flag missing values rather than inferring them.</p>
+<section id="hands-on-exercise-electrospun-scaffold-characterisation">
+<h3>Hands-on Exercise: Electrospun Scaffold Characterisation<a class="headerlink" href="#hands-on-exercise-electrospun-scaffold-characterisation" title="Link to this heading">#</a></h3>
+<p>Pasting text from <a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/11932882/">Li et al., 2002 (PubMed: 11932882)</a> or similar scaffold literature, run the following extraction prompt:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Role: Tissue Engineering Data Specialist.
+
+Task: Extract quantitative scaffold characterisation metrics from the
+paper excerpt wrapped in &lt;paper_text&gt;.
+
+Execution Rules:
+1. Format output as a Markdown table with columns:
+   | Polymer Material | Fiber Diameter Range ($\mu\text{m}$) | Porosity (%) | Compressive/Tensile Modulus ($\text{MPa}$) | Cell Type Cultured |
+2. Standardise all spatial metrics to micrometers ($\mu\text{m}$) and pressure metrics to Megapascals ($\text{MPa}$).
+3. If an empirical metric is not explicitly stated in the text, write &quot;NR&quot; (Not Reported). Do NOT calculate or guess missing values.
+
+&lt;paper_text&gt;
+[Insert Methods/Results excerpt from electrospinning publication]
+&lt;/paper_text&gt;
+
+</pre></div>
+</div>
+</section>
+</section>
+<section id="multi-paper-synthesis-literature-matrix-construction">
+<h2>4. Multi-Paper Synthesis &amp; Literature Matrix Construction<a class="headerlink" href="#multi-paper-synthesis-literature-matrix-construction" title="Link to this heading">#</a></h2>
+<p>Synthesise multiple research papers into a single structured comparative matrix without exceeding context or output generation limits.</p>
+<section id="multi-study-comparative-prompt">
+<h3>Multi-Study Comparative Prompt<a class="headerlink" href="#multi-study-comparative-prompt" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Task</span><span class="p">:</span> <span class="n">Synthesise</span> <span class="n">the</span> <span class="mi">3</span> <span class="n">publication</span> <span class="n">abstracts</span> <span class="n">provided</span> <span class="n">below</span> <span class="n">regarding</span> <span class="n">cardiovascular</span> <span class="ow">and</span> <span class="n">targeted</span> <span class="n">drug</span> <span class="n">delivery</span> <span class="n">systems</span><span class="o">.</span>
+
+<span class="n">Sources</span><span class="p">:</span>
+<span class="o">-</span> <span class="n">Paper</span> <span class="mi">1</span><span class="p">:</span> <span class="n">Dahl</span> <span class="n">et</span> <span class="n">al</span><span class="o">.</span><span class="p">,</span> <span class="mi">2011</span> <span class="p">(</span><span class="n">Vascular</span> <span class="n">Grafts</span><span class="p">,</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">pubmed</span><span class="o">.</span><span class="n">ncbi</span><span class="o">.</span><span class="n">nlm</span><span class="o">.</span><span class="n">nih</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="mi">21307353</span><span class="o">/</span><span class="p">)</span>
+<span class="o">-</span> <span class="n">Paper</span> <span class="mi">2</span><span class="p">:</span> <span class="n">Peer</span> <span class="n">et</span> <span class="n">al</span><span class="o">.</span><span class="p">,</span> <span class="mi">2007</span> <span class="p">(</span><span class="n">Cancer</span> <span class="n">Nanocarriers</span><span class="p">,</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">nature</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">articles</span><span class="o">/</span><span class="n">nnano</span><span class="mf">.2007.387</span><span class="p">)</span>
+<span class="o">-</span> <span class="n">Paper</span> <span class="mi">3</span><span class="p">:</span> <span class="n">Roy</span> <span class="n">et</span> <span class="n">al</span><span class="o">.</span><span class="p">,</span> <span class="mi">2011</span> <span class="p">(</span><span class="n">Titanium</span> <span class="n">Nanotubes</span><span class="p">,</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">pubmed</span><span class="o">.</span><span class="n">ncbi</span><span class="o">.</span><span class="n">nlm</span><span class="o">.</span><span class="n">nih</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="mi">21394857</span><span class="o">/</span><span class="p">)</span>
+
+<span class="n">Abstract</span> <span class="mi">1</span><span class="p">:</span> <span class="p">[</span><span class="n">Paste</span> <span class="n">Text</span><span class="p">]</span>
+<span class="n">Abstract</span> <span class="mi">2</span><span class="p">:</span> <span class="p">[</span><span class="n">Paste</span> <span class="n">Text</span><span class="p">]</span>
+<span class="n">Abstract</span> <span class="mi">3</span><span class="p">:</span> <span class="p">[</span><span class="n">Paste</span> <span class="n">Text</span><span class="p">]</span>
+
+<span class="n">Generate</span> <span class="n">a</span> <span class="n">Comparative</span> <span class="n">Literature</span> <span class="n">Matrix</span><span class="p">:</span>
+<span class="o">|</span> <span class="n">Primary</span> <span class="n">Author</span> <span class="o">&amp;</span> <span class="n">Year</span> <span class="o">|</span> <span class="n">Bio</span><span class="o">-</span><span class="n">Platform</span> <span class="n">Class</span> <span class="o">|</span> <span class="n">Target</span> <span class="n">Application</span> <span class="o">|</span> <span class="n">Key</span> <span class="n">Quantitative</span> <span class="n">Outcome</span> <span class="o">|</span> <span class="n">Primary</span> <span class="n">Material</span> <span class="n">Limitation</span> <span class="o">|</span>
+<span class="o">|</span> <span class="p">:</span><span class="o">---</span> <span class="o">|</span> <span class="p">:</span><span class="o">---</span> <span class="o">|</span> <span class="p">:</span><span class="o">---</span> <span class="o">|</span> <span class="p">:</span><span class="o">---</span> <span class="o">|</span> <span class="p">:</span><span class="o">---</span> <span class="o">|</span>
+
+<span class="n">Follow</span> <span class="n">the</span> <span class="n">table</span> <span class="n">immediately</span> <span class="k">with</span> <span class="n">a</span> <span class="n">concise</span> <span class="n">summary</span> <span class="p">(</span><span class="nb">max</span> <span class="mi">150</span> <span class="n">words</span><span class="p">)</span> <span class="n">identifying</span> <span class="n">common</span> <span class="n">biomaterial</span> <span class="n">translation</span> <span class="n">hurdles</span> <span class="n">across</span> <span class="nb">all</span> <span class="n">three</span> <span class="n">platforms</span><span class="o">.</span>
+
+</pre></div>
+</div>
+</section>
+</section>
+<section id="grounding-verification-researcher-checklist">
+<h2>5. Grounding, Verification &amp; Researcher Checklist<a class="headerlink" href="#grounding-verification-researcher-checklist" title="Link to this heading">#</a></h2>
+<p>Always verify extracted numbers, chemical formulas and citations against the primary source publications.</p>
+<ul class="contains-task-list simple">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> CONSTRAIN: Did I enforce explicit SI units (e.g., <span class="math notranslate nohighlight">\(\text{kPa}\)</span>, <span class="math notranslate nohighlight">\(\text{MPa}\)</span>, <span class="math notranslate nohighlight">\(\mu\text{m}\)</span>, <span class="math notranslate nohighlight">\(\text{wt}\%\)</span>) and table/JSON format?</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> TRIM: Did I strip references, grant funding text, and institutional headers before pasting text into Gemini?</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> GROUND: Did I instruct Gemini to write “NR” for missing experimental variables to prevent hallucinated numbers?</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> CITE: Are all paper inputs grounded with real DOI/PubMed URLs (e.g., PubMed ID or DOI links)?</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> VERIFY: Did I cross-reference critical quantitative metrics against original figures and tables in the source paper?</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./docs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="part3.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Responsible &amp; Ethical Use of Generative AI</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-open-access-reference-library">Sample Open-Access Reference Library</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#token-economics">1. Token Economics</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-concepts">Key Concepts</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prompt-architecture-for-literature-analysis">2. Prompt Architecture for Literature Analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#structural-template">Structural Template</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#refactoring-exercise">Refactoring Exercise</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quantitative-property-parameter-extraction">3. Quantitative Property &amp; Parameter Extraction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-exercise-electrospun-scaffold-characterisation">Hands-on Exercise: Electrospun Scaffold Characterisation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-paper-synthesis-literature-matrix-construction">4. Multi-Paper Synthesis &amp; Literature Matrix Construction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-study-comparative-prompt">Multi-Study Comparative Prompt</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grounding-verification-researcher-checklist">5. Grounding, Verification &amp; Researcher Checklist</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Joachim M. Bestenlehner
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
