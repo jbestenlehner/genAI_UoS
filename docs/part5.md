@@ -17,14 +17,12 @@ An AI agent uses an AI model to undertake tasks autonomously, including interact
 To use an AI agent effectively as an engineer, a useful approach is to retain responsibility for high-level decisions about the implementation strategy and delegate more routine or administrative tasks to the agent.
 
 
-### Examples of how agentic AI differs from using an AI chat interface
+:::{admonition} Examples of how agentic AI differs from using an AI chat interface
 
-<div class="admonition example">
-  <p class="admonition-title">Example</p>
-  <p>For example, a chat interface could be prompted to write Python code to rename files in a directory (called a folder in Windows). The code would then need to be copied from the chat interface and executed on a computer. Alternatively, a similar prompt could be provided to an AI agent. The agent could autonomously examine the files in the directory, generate the necessary code and execute it on the computer.
+  For example, a chat interface could be prompted to write Python code to rename files in a directory (called a folder in Windows). The code would then need to be copied from the chat interface and executed on a computer. Alternatively, a similar prompt could be provided to an AI agent. The agent could autonomously examine the files in the directory, generate the necessary code and execute it on the computer.
 
-  Another example would be creating a web application running on a Raspberry Pi to control a connected LED based on sensor data. As with the previous example, a chat interface could generate the code and provide instructions for installing, deploying and validating the application. Alternatively, an AI agent with the necessary access could interact directly with the Raspberry Pi's operating system, download and install the required software (for example, a web server and the necessary libraries for interacting with the Raspberry Pi's GPIO pins), generate and execute code, deploy the application and perform tests to check that it operates as intended, provided it has suitable access to feedback from the connected hardware.</p>
-</div>
+  Another example would be creating a web application running on a Raspberry Pi to control a connected LED based on sensor data. As with the previous example, a chat interface could generate the code and provide instructions for installing, deploying and validating the application. Alternatively, an AI agent with the necessary access could interact directly with the Raspberry Pi's operating system, download and install the required software (for example, a web server and the necessary libraries for interacting with the Raspberry Pi's GPIO pins), generate and execute code, deploy the application and perform tests to check that it operates as intended, provided it has suitable access to feedback from the connected hardware.
+:::
 
 
 ## Using agents safely
@@ -94,12 +92,11 @@ Persistent instruction files can be extensive and detailed, sometimes exceeding 
 
 Record keeping is particularly important when working with AI agents. During long-horizon tasks, an agent can generate more files and lines of code than a human could realistically be expected to read and fully understand. Maintaining comprehensive documentation manually can be time-consuming, whereas an AI agent can generate and update records as part of its normal workflow. However, care should be taken to ensure that these records remain accurate and consistent with the work undertaken. Including explicit requirements for maintaining and updating documentation in the agent's persistent instructions can help mitigate this risk.
 
-### Example of automated record keeping
 
-<div class="admonition example">
-  <p class="admonition-title">Example</p>
-  <p>Consider using an AI agent to create a series of engineering reports containing images and diagrams that could be reused across multiple documents. It may be beneficial to maintain a central index recording which images are used in each report, along with their captions and alternative text (alt-text). This would allow a user or an AI agent to quickly identify which images appear in which documents, without needing to examine each report individually. This index, along with other records, would need to be kept up to date, either periodically or as new content is created or existing content is modified.</p>
-</div>
+
+:::{admonition} Example of automated record keeping
+  Consider using an AI agent to create a series of engineering reports containing images and diagrams that could be reused across multiple documents. It may be beneficial to maintain a central index recording which images are used in each report, along with their captions and alternative text (alt-text). This would allow a user or an AI agent to quickly identify which images appear in which documents, without needing to examine each report individually. This index, along with other records, would need to be kept up to date, either periodically or as new content is created or existing content is modified.
+:::
 
 Records of previous work can provide valuable context for an AI agent, particularly when they are retrieved in a future session or by a different agent. This is discussed further in the next section.
 
@@ -119,10 +116,8 @@ Context may also be lost when an agent session ends or when work is transferred 
 
 Model Context Protocol (MCP) is an open standard that allows AI agents to connect to external software, tools and data sources. This enables an agent to interact with specialist software without the user needing to understand how to operate it directly. For example, an agent could be tasked with designing a component in CAD software, exporting the model and preparing it for manufacture using a 3D printer, with minimal human intervention.
 
-<div class="admonition example">
-  <p class="admonition-title">Example</p>
-  <p>Creating CAD models using AI
+:::{admonition} Example: Creating CAD models using AI
   
-  An example of my own use of MCP involved connecting Autodesk Fusion 360 to the Claude desktop application. I produced a pencil sketch of an engineering component, including its dimensions, photographed the sketch and uploaded the image to Claude. I then instructed the agent to create a three-dimensional model of the component in Fusion 360. Once created, I was able to make further changes to the model through natural-language instructions in Claude, without needing to interact directly with the Fusion 360 interface.</p>
-</div>
+  An example of my own use of MCP involved connecting Autodesk Fusion 360 to the Claude desktop application. I produced a pencil sketch of an engineering component, including its dimensions, photographed the sketch and uploaded the image to Claude. I then instructed the agent to create a three-dimensional model of the component in Fusion 360. Once created, I was able to make further changes to the model through natural-language instructions in Claude, without needing to interact directly with the Fusion 360 interface.
+:::
 
