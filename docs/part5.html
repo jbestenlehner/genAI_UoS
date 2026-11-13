@@ -1,0 +1,590 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Context engineering and agent AI &#8212; Generative AI assisted learning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/part5';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Prompt Engineering &amp; Token Efficiency" href="part4.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/UOSLogo_Primary_Violet_RGB.png" class="logo__image only-light" alt="Generative AI assisted learning - Home"/>
+    <script>document.write(`<img src="../_static/UOSLogo_Primary_Violet_RGB.png" class="logo__image only-dark" alt="Generative AI assisted learning - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Generative AI assisted learning
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 1</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="part1.html">Generative AI as an assistive technology</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 2</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="part2.html">NotebookLM to support learning</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 3</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="part3.html">Responsible &amp; Ethical Use of Generative AI</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 4</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="part4.html">Prompt Engineering &amp; Token Efficiency</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 5</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Context engineering and agent AI</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/docs/part5.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Context engineering and agent AI</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-outcomes">Learning Outcomes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ai-agents">AI Agents</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-agents-safely">Using agents safely</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-harness">A harness</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#context">Context</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#persistent-instructions">Persistent instructions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#record-keeping">Record keeping</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-context-and-the-context-window">Model context and the context window</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-context-protocol-mcp">Model Context Protocol (MCP)</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="context-engineering-and-agent-ai">
+<h1>Context engineering and agent AI<a class="headerlink" href="#context-engineering-and-agent-ai" title="Permalink to this heading">#</a></h1>
+<p><strong>by Professor Andrew Garrard MEng(hons) PhD CEng FIMechE PFHEA</strong></p>
+<section id="learning-outcomes">
+<h2>Learning Outcomes<a class="headerlink" href="#learning-outcomes" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Explain the difference between agentic and chat window based use of AI</p></li>
+<li><p>Explain how AI can be used to undertake engineering tasks, including the opportunities and limitations of autonomous operation.</p></li>
+<li><p>Identify opportunities to use AI to improve the effectiveness and efficiency of engineering workflows.</p></li>
+<li><p>Apply appropriate approaches to configuring and using AI tools to undertake practical engineering tasks.</p></li>
+<li><p>Evaluate the effectiveness, reliability and risks of AI-assisted workflows, including the appropriate level of human oversight.</p></li>
+</ul>
+</section>
+<section id="ai-agents">
+<h2>AI Agents<a class="headerlink" href="#ai-agents" title="Permalink to this heading">#</a></h2>
+<p>An AI agent uses an AI model to undertake tasks autonomously, including interacting with its environment and taking actions on behalf of a user.  Unlike using AI through a chat interface, where the outcome is typically information presented to the user, an AI agent can take actions such as modifying files, interacting with the internet or executing terminal commands. Agents are not necessarily more intelligent than equivalent models accessed through a chat interface. Their advantage is that they can interact with their environment and act upon the results.</p>
+<p>To use an AI agent effectively as an engineer, a useful approach is to retain responsibility for high-level decisions about the implementation strategy and delegate more routine or administrative tasks to the agent.</p>
+<div class="admonition-examples-of-how-agentic-ai-differs-from-using-an-ai-chat-interface admonition">
+<p class="admonition-title">Examples of how agentic AI differs from using an AI chat interface</p>
+<p>For example, a chat interface could be prompted to write Python code to rename files in a directory (called a folder in Windows). The code would then need to be copied from the chat interface and executed on a computer. Alternatively, a similar prompt could be provided to an AI agent. The agent could autonomously examine the files in the directory, generate the necessary code and execute it on the computer.</p>
+<p>Another example would be creating a web application running on a Raspberry Pi to control a connected LED based on sensor data. As with the previous example, a chat interface could generate the code and provide instructions for installing, deploying and validating the application. Alternatively, an AI agent with the necessary access could interact directly with the Raspberry Pi’s operating system, download and install the required software (for example, a web server and the necessary libraries for interacting with the Raspberry Pi’s GPIO pins), generate and execute code, deploy the application and perform tests to check that it operates as intended, provided it has suitable access to feedback from the connected hardware.</p>
+</div>
+</section>
+<section id="using-agents-safely">
+<h2>Using agents safely<a class="headerlink" href="#using-agents-safely" title="Permalink to this heading">#</a></h2>
+<p>Agentic AI is an extremely powerful tool that can be used to undertake complex or long-running tasks with minimal manual input. Complex systems consisting of multiple files and thousands of lines of code can be created with relatively little human input beyond specifying the desired requirements. However, the resulting systems still require appropriate testing and validation to establish that they meet those requirements. Even when the stated requirements are met, the outcome may not fully reflect the user’s original vision, making further refinement necessary. Nevertheless, AI capabilities in this area are developing rapidly.</p>
+<p>This capability also carries risks. It is important to ensure that an agent’s access to files and systems is limited to what is necessary to complete the tasks it has been assigned. This can be achieved through sandboxing, the use of virtual machines and appropriate access permissions. Agentic tools also typically provide different levels of autonomy, such as:</p>
+<ul class="simple">
+<li><p>Suggest actions for me to perform manually.</p></li>
+<li><p>Request my approval before taking actions.</p></li>
+<li><p>Take actions without requesting approval.</p></li>
+</ul>
+<p>As users gain experience with an AI agent, their confidence in its ability to perform particular tasks may increase, leading them to grant it greater autonomy. Repeatedly authorising actions that are consistently sensible and aligned with the objectives of the task can become frustrating, creating an incentive to allow the agent to operate with less supervision. However, this trust should be based on verification that the agent’s actions are appropriate and produce the intended results, rather than simply on the apparent success of previous tasks.</p>
+</section>
+<section id="a-harness">
+<h2>A harness<a class="headerlink" href="#a-harness" title="Permalink to this heading">#</a></h2>
+<p>An AI agent requires a <em>harness</em>. A harness is software that manages communication with an AI model (such as Gemini, GPT or Claude) and enables the model to interact with its environment and execute tasks. The harness sends information and instructions to the model as input tokens, receives its responses as output tokens and translates requests for actions into operations on the computer or other connected systems.</p>
+<p>An example of a harness is an AI agent extension for Visual Studio Code (VS Code). VS Code is a development environment that allows users to open, create and edit files on a local or remote computer. By installing an agent extension and connecting it to an AI model, either through a subscription or an API, the model can be used to perform agentic tasks such as modifying files, executing commands and testing code.</p>
+<p>For an agent to undertake complex tasks requiring an extended sequence of actions (sometimes called <em>long-horizon tasks</em>), the concept of <strong>context</strong> is particularly important. Context can refer to two different but related concepts:</p>
+<ul class="simple">
+<li><p>Context for the task</p></li>
+<li><p>The model’s context window</p></li>
+</ul>
+</section>
+<section id="context">
+<h2>Context<a class="headerlink" href="#context" title="Permalink to this heading">#</a></h2>
+<p>The context for a task is the information an agent needs to achieve the desired outcome. For example, if an agent were asked to develop a tool for managing project budgets, it would benefit from a detailed description of the required functionality and how users should interact with it. Access to previous accounts and transactions would provide further context, enabling the agent to develop a more suitable application.</p>
+<p>When working with an agent, it is not always necessary to explicitly provide all the context through the harness. Instead, an agent can be given access to a directory containing relevant files, from which it can retrieve information as required. This differs from a conventional chat interface, where relevant files and information generally need to be supplied directly by the user.</p>
+<p>Context can take several forms. Three useful categories of contextual information are:</p>
+<ul class="simple">
+<li><p>Existing information. Information that is already available and relevant to the task, such as example data, policy documents, technical specifications or software documentation.</p></li>
+<li><p>Persistent instructions. Instructions that guide how an agent should operate, including preferred working practices, constraints and high-level objectives. These instructions can be retained and applied consistently across multiple tasks or sessions.</p></li>
+<li><p>Records of previous work. Documentation of work already undertaken, including design decisions, their rationale, established conventions and progress towards the intended outcome. These records allow an agent to maintain continuity across multiple sessions and avoid revisiting decisions unnecessarily.</p></li>
+</ul>
+<p>These categories are intended to illustrate different ways of providing context to an AI agent, rather than represent an exhaustive or formally established classification.</p>
+<section id="persistent-instructions">
+<h3>Persistent instructions<a class="headerlink" href="#persistent-instructions" title="Permalink to this heading">#</a></h3>
+<p>Persistent instructions are commonly stored in Markdown files, identified by the .md extension. When working with an AI agent that reads and writes files in a directory, it is common to find an instruction file named <a class="reference external" href="http://AGENTS.md">AGENTS.md</a> or <a class="reference external" href="http://CLAUDE.md">CLAUDE.md</a>, depending on the agent being used. These files provide instructions that the agent can apply consistently across multiple sessions. Over time, users can develop and refine these instructions based on their experience of working with agents.
+Examples of extracts from my own <a class="reference external" href="http://CLAUDE.md">CLAUDE.md</a> files include:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>```
+Assume I&#39;m a generalist, not an expert. I tend to know a little about a lot of things. If I suggest a particular approach, don&#39;t just follow it — tell me how an expert in that field would tackle the same problem. Flag best practices, common pitfalls, and established patterns I might not be aware of. Help me learn as we go, don&#39;t just ship.
+```
+</pre></div>
+</div>
+<p>And:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>```
+Before considering something done, check it on two dimensions:
+
+- Does it work? Does the system behave correctly and robustly?
+- Does it work for people? Consider the full range of users. Is it inclusive, accessible, and appropriate for its context? If the audience includes students, is it pedagogically sound and clear? If it&#39;s public-facing, is it welcoming and respectful of different backgrounds and abilities?
+```
+</pre></div>
+</div>
+<p>Persistent instructions can also include</p>
+<ul class="simple">
+<li><p>the objectives of a project,</p></li>
+<li><p>strategic design decisions,</p></li>
+<li><p>conventions to be followed,</p></li>
+<li><p>preferred software tools and technologies,</p></li>
+<li><p>the architecture of the intended output,</p></li>
+<li><p>methods for validating the work undertaken.</p></li>
+</ul>
+<p>Persistent instruction files can be extensive and detailed, sometimes exceeding 1,000 lines of text. Of course, AI itself can be particularly useful in developing and refining these instructions, helping to establish clear conventions, identify gaps and improve their effectiveness over time. Care should be taken to avoid unnecessarily lengthy or conflicting instructions, which can increase token consumption and reduce the effectiveness of the agent.</p>
+</section>
+<section id="record-keeping">
+<h3>Record keeping<a class="headerlink" href="#record-keeping" title="Permalink to this heading">#</a></h3>
+<p>Record keeping is particularly important when working with AI agents. During long-horizon tasks, an agent can generate more files and lines of code than a human could realistically be expected to read and fully understand. Maintaining comprehensive documentation manually can be time-consuming, whereas an AI agent can generate and update records as part of its normal workflow. However, care should be taken to ensure that these records remain accurate and consistent with the work undertaken. Including explicit requirements for maintaining and updating documentation in the agent’s persistent instructions can help mitigate this risk.</p>
+<div class="admonition-example-of-automated-record-keeping admonition">
+<p class="admonition-title">Example of automated record keeping</p>
+<p>Consider using an AI agent to create a series of engineering reports containing images and diagrams that could be reused across multiple documents. It may be beneficial to maintain a central index recording which images are used in each report, along with their captions and alternative text (alt-text). This would allow a user or an AI agent to quickly identify which images appear in which documents, without needing to examine each report individually. This index, along with other records, would need to be kept up to date, either periodically or as new content is created or existing content is modified.</p>
+</div>
+<p>Records of previous work can provide valuable context for an AI agent, particularly when they are retrieved in a future session or by a different agent. This is discussed further in the next section.</p>
+</section>
+<section id="model-context-and-the-context-window">
+<h3>Model context and the context window<a class="headerlink" href="#model-context-and-the-context-window" title="Permalink to this heading">#</a></h3>
+<p>AI models are trained on large quantities of data, from which they learn patterns, relationships and information that enable them to perform a wide range of tasks. This provides a foundation of knowledge and capabilities that can be used without supplying additional information. For example, an AI model will typically be able to write JavaScript functions or explain the Navier–Stokes equations without needing to be provided with reference material.</p>
+<p>However, when using an AI model for a specific task, additional information is often required. This might include company policies, technical specifications, project requirements or information about the intended users of a product. This information can be provided to the model as <em>context</em>.</p>
+<p>An AI model has a finite <strong>context window</strong>, which determines how much information it can consider at any one time. This can be thought of as a form of working memory, containing the instructions, information, conversation history and results of previous actions that are available to the model as it undertakes a task. The context window is measured in tokens, and its size varies between models.</p>
+<p>Unlike the knowledge acquired during training, information provided through the context window is not permanently learned by the model. During long-horizon tasks, the context window can gradually fill as the agent reads files, executes commands and receives new information. To allow the agent to continue working, some agentic tools use a process called <strong>compaction</strong>, in which information from the existing context is summarised or compressed to reduce the number of tokens required. Although this allows the task to continue, some details may be lost during the process.</p>
+<p>Context may also be lost when an agent session ends or when work is transferred to another model, depending on the capabilities of the agentic tool. This is why persistent instructions, record keeping and well-structured documentation are particularly important. By storing important information outside the context window, an agent can retrieve it during a future session and continue working with an understanding of the project’s objectives, previous decisions and progress. Maintaining concise, relevant records also helps to minimise the number of tokens required to restore this context.</p>
+</section>
+</section>
+<section id="model-context-protocol-mcp">
+<h2>Model Context Protocol (MCP)<a class="headerlink" href="#model-context-protocol-mcp" title="Permalink to this heading">#</a></h2>
+<p>Model Context Protocol (MCP) is an open standard that allows AI agents to connect to external software, tools and data sources. This enables an agent to interact with specialist software without the user needing to understand how to operate it directly. For example, an agent could be tasked with designing a component in CAD software, exporting the model and preparing it for manufacture using a 3D printer, with minimal human intervention.</p>
+<div class="admonition-example-creating-cad-models-using-ai admonition">
+<p class="admonition-title">Example: Creating CAD models using AI</p>
+<p>An example of my own use of MCP involved connecting Autodesk Fusion 360 to the Claude desktop application. I produced a pencil sketch of an engineering component, including its dimensions, photographed the sketch and uploaded the image to Claude. I then instructed the agent to create a three-dimensional model of the component in Fusion 360. Once created, I was able to make further changes to the model through natural-language instructions in Claude, without needing to interact directly with the Fusion 360 interface.</p>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./docs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="part4.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Prompt Engineering &amp; Token Efficiency</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-outcomes">Learning Outcomes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ai-agents">AI Agents</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-agents-safely">Using agents safely</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-harness">A harness</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#context">Context</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#persistent-instructions">Persistent instructions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#record-keeping">Record keeping</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-context-and-the-context-window">Model context and the context window</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-context-protocol-mcp">Model Context Protocol (MCP)</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Joachim M. Bestenlehner
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

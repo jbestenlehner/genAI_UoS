@@ -1,12 +1,13 @@
 
+
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="../" >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Prompt Engineering &amp; Token Efficiency &#8212; Generative AI assisted learning</title>
   
@@ -14,54 +15,59 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
 
-    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="../_static/doctools.js?v=9a2dae69"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="../_static/copybutton.js?v=f281be69"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js?v=f930bc37"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'docs/part4';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Context engineering and agent AI" href="part5.html" />
     <link rel="prev" title="Responsible &amp; Ethical Use of Generative AI" href="part3.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -72,23 +78,28 @@
 
   
   
-  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
   
   <div id="pst-scroll-pixel-helper"></div>
+
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -110,20 +121,12 @@
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
-
-  <div class="pst-async-banner-revealer d-none">
-  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
-</div>
-
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
-    </header>
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
   
-
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
-      
-      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -139,8 +142,6 @@
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
 
-  
-    
   
 
 <a class="navbar-brand logo" href="../intro.html">
@@ -159,18 +160,7 @@
   
   
 </a></div>
-        <div class="sidebar-primary-item">
-
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
-        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -196,6 +186,10 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Prompt Engineering &amp; Token Efficiency</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part 5</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="part5.html">Context engineering and agent AI</a></li>
+</ul>
 
     </div>
 </nav></div>
@@ -210,7 +204,7 @@
 
       </div>
       
-      <main id="main-content" class="bd-main" role="main">
+      <main id="main-content" class="bd-main">
         
         
 
@@ -219,14 +213,14 @@
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article d-print-none">
+              <div class="bd-header-article">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</button></div>
+</label></div>
       
     </div>
   
@@ -304,10 +298,10 @@
 
 <script>
 document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
@@ -315,14 +309,14 @@ document.write(`
 
 <script>
 document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</button>
+</label>
 </div></div>
       
     </div>
@@ -371,13 +365,13 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article">
+                <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="prompt-engineering-token-efficiency">
-<h1>Prompt Engineering &amp; Token Efficiency<a class="headerlink" href="#prompt-engineering-token-efficiency" title="Link to this heading">#</a></h1>
+<h1>Prompt Engineering &amp; Token Efficiency<a class="headerlink" href="#prompt-engineering-token-efficiency" title="Permalink to this heading">#</a></h1>
 <p><strong>Objective:</strong> Learn prompt architecture, token budget optimisation, context reduction and using GenAU to automatically read academic research papers and organise them into a structured comparison table or matrix.</p>
 <section id="sample-open-access-reference-library">
-<h2>Sample Open-Access Reference Library<a class="headerlink" href="#sample-open-access-reference-library" title="Link to this heading">#</a></h2>
+<h2>Sample Open-Access Reference Library<a class="headerlink" href="#sample-open-access-reference-library" title="Permalink to this heading">#</a></h2>
 <p>This tutorial references the following peer-reviewed, open-access publications for hands-on prompting exercises:</p>
 <ol class="arabic simple">
 <li><p><strong>GelMA Hydrogels:</strong> Yue et al., <em>“Synthesis, properties, and biomedical applications of gelatin methacryloyl (GelMA) hydrogels.”</em> <em>Biomaterials</em> (2015). <a class="reference external" href="https://doi.org/10.1016/j.biomaterials.2015.06.026">DOI: 10.1016/j.biomaterials.2015.06.026</a></p></li>
@@ -389,9 +383,9 @@ document.write(`
 <p><em>Note: Be careful with content under copyright and other none open-access materials.</em></p>
 </section>
 <section id="token-economics">
-<h2>1. Token Economics<a class="headerlink" href="#token-economics" title="Link to this heading">#</a></h2>
+<h2>1. Token Economics<a class="headerlink" href="#token-economics" title="Permalink to this heading">#</a></h2>
 <section id="key-concepts">
-<h3>Key Concepts<a class="headerlink" href="#key-concepts" title="Link to this heading">#</a></h3>
+<h3>Key Concepts<a class="headerlink" href="#key-concepts" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Token Math in Scientific Manuscripts:</strong> In Google Gemini, <span class="math notranslate nohighlight">\(1\text{ token} \approx 4\text{ characters}\)</span> or <span class="math notranslate nohighlight">\(\approx 0.75\text{ words}\)</span>. A 10-page article from <em>Biomaterials</em> or <em>IEEE Transactions on Biomedical Engineering</em> averages <span class="math notranslate nohighlight">\(8,000\)</span> to <span class="math notranslate nohighlight">\(14,000\text{ tokens}\)</span> when including chemical formulas, gene markers, and experimental tables.</p></li>
 <li><p><strong>The Cost of Context Bloat:</strong> Uploading five 30-page PDF papers simultaneously (<span class="math notranslate nohighlight">\(&gt;60,000\text{ tokens}\)</span>) consumes extensive processing time and can reduce retrieval accuracy for specific quantitative metrics (such as Young’s modulus or cell seeding density).</p></li>
@@ -400,7 +394,7 @@ document.write(`
 </section>
 </section>
 <section id="prompt-architecture-for-literature-analysis">
-<h2>2. Prompt Architecture for Literature Analysis<a class="headerlink" href="#prompt-architecture-for-literature-analysis" title="Link to this heading">#</a></h2>
+<h2>2. Prompt Architecture for Literature Analysis<a class="headerlink" href="#prompt-architecture-for-literature-analysis" title="Permalink to this heading">#</a></h2>
 <p>Vague prompts consume unnecessary tokens by forcing the model to generate generic background information. Use the <strong>RTCE Framework</strong> (Role, Task, Context, Execution) to eliminate generic conversational filler and direct Gemini straight to actionable research insights:</p>
 <ul class="simple">
 <li><p><strong>Role:</strong> Set the domain expertise (e.g., Biomaterials Engineer specializing in electrospun scaffolds).</p></li>
@@ -410,7 +404,7 @@ document.write(`
 </ul>
 <p>If unsure what Markdown table or JSON schema is, just ask Gemini.</p>
 <section id="structural-template">
-<h3>Structural Template<a class="headerlink" href="#structural-template" title="Link to this heading">#</a></h3>
+<h3>Structural Template<a class="headerlink" href="#structural-template" title="Permalink to this heading">#</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">ROLE</span> <span class="o">/</span> <span class="n">DOMAIN</span> <span class="n">SPECIALISATION</span><span class="p">]</span>
 <span class="n">Act</span> <span class="k">as</span> <span class="n">a</span> <span class="n">Senior</span> <span class="n">Biomaterials</span> <span class="n">Scientist</span> <span class="n">specialising</span> <span class="ow">in</span> <span class="n">hydrogels</span> <span class="ow">and</span>
 <span class="n">tissue</span> <span class="n">scaffolds</span><span class="o">.</span>
@@ -434,7 +428,7 @@ document.write(`
 </div>
 </section>
 <section id="refactoring-exercise">
-<h3>Refactoring Exercise<a class="headerlink" href="#refactoring-exercise" title="Link to this heading">#</a></h3>
+<h3>Refactoring Exercise<a class="headerlink" href="#refactoring-exercise" title="Permalink to this heading">#</a></h3>
 <ul>
 <li><p>❌ <strong>Unoptimised Prompt (Heavy token cost, unconstrained prose):</strong></p>
 <blockquote>
@@ -452,10 +446,10 @@ Format as a 3-row table: <code class="docutils literal notranslate"><span class=
 </section>
 </section>
 <section id="quantitative-property-parameter-extraction">
-<h2>3. Quantitative Property &amp; Parameter Extraction<a class="headerlink" href="#quantitative-property-parameter-extraction" title="Link to this heading">#</a></h2>
+<h2>3. Quantitative Property &amp; Parameter Extraction<a class="headerlink" href="#quantitative-property-parameter-extraction" title="Permalink to this heading">#</a></h2>
 <p>When mining physical and biological properties across experimental papers, prompt Gemini to standardise units and strictly flag missing values rather than inferring them.</p>
 <section id="hands-on-exercise-electrospun-scaffold-characterisation">
-<h3>Hands-on Exercise: Electrospun Scaffold Characterisation<a class="headerlink" href="#hands-on-exercise-electrospun-scaffold-characterisation" title="Link to this heading">#</a></h3>
+<h3>Hands-on Exercise: Electrospun Scaffold Characterisation<a class="headerlink" href="#hands-on-exercise-electrospun-scaffold-characterisation" title="Permalink to this heading">#</a></h3>
 <p>Pasting text from <a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/11932882/">Li et al., 2002 (PubMed: 11932882)</a> or similar scaffold literature, run the following extraction prompt:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Role: Tissue Engineering Data Specialist.
 
@@ -477,10 +471,10 @@ Execution Rules:
 </section>
 </section>
 <section id="multi-paper-synthesis-literature-matrix-construction">
-<h2>4. Multi-Paper Synthesis &amp; Literature Matrix Construction<a class="headerlink" href="#multi-paper-synthesis-literature-matrix-construction" title="Link to this heading">#</a></h2>
+<h2>4. Multi-Paper Synthesis &amp; Literature Matrix Construction<a class="headerlink" href="#multi-paper-synthesis-literature-matrix-construction" title="Permalink to this heading">#</a></h2>
 <p>Synthesise multiple research papers into a single structured comparative matrix without exceeding context or output generation limits.</p>
 <section id="multi-study-comparative-prompt">
-<h3>Multi-Study Comparative Prompt<a class="headerlink" href="#multi-study-comparative-prompt" title="Link to this heading">#</a></h3>
+<h3>Multi-Study Comparative Prompt<a class="headerlink" href="#multi-study-comparative-prompt" title="Permalink to this heading">#</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Task</span><span class="p">:</span> <span class="n">Synthesise</span> <span class="n">the</span> <span class="mi">3</span> <span class="n">publication</span> <span class="n">abstracts</span> <span class="n">provided</span> <span class="n">below</span> <span class="n">regarding</span> <span class="n">cardiovascular</span> <span class="ow">and</span> <span class="n">targeted</span> <span class="n">drug</span> <span class="n">delivery</span> <span class="n">systems</span><span class="o">.</span>
 
 <span class="n">Sources</span><span class="p">:</span>
@@ -503,7 +497,7 @@ Execution Rules:
 </section>
 </section>
 <section id="grounding-verification-researcher-checklist">
-<h2>5. Grounding, Verification &amp; Researcher Checklist<a class="headerlink" href="#grounding-verification-researcher-checklist" title="Link to this heading">#</a></h2>
+<h2>5. Grounding, Verification &amp; Researcher Checklist<a class="headerlink" href="#grounding-verification-researcher-checklist" title="Permalink to this heading">#</a></h2>
 <p>Always verify extracted numbers, chemical formulas and citations against the primary source publications.</p>
 <ul class="contains-task-list simple">
 <li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> CONSTRAIN: Did I enforce explicit SI units (e.g., <span class="math notranslate nohighlight">\(\text{kPa}\)</span>, <span class="math notranslate nohighlight">\(\text{MPa}\)</span>, <span class="math notranslate nohighlight">\(\mu\text{m}\)</span>, <span class="math notranslate nohighlight">\(\text{wt}\%\)</span>) and table/JSON format?</p></li>
@@ -542,7 +536,7 @@ Execution Rules:
               
               
               
-                <footer class="prev-next-footer d-print-none">
+                <footer class="prev-next-footer">
                   
 <div class="prev-next-area">
     <a class="left-prev"
@@ -554,6 +548,15 @@ Execution Rules:
         <p class="prev-next-title">Responsible &amp; Ethical Use of Generative AI</p>
       </div>
     </a>
+    <a class="right-next"
+       href="part5.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Context engineering and agent AI</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -562,7 +565,6 @@ Execution Rules:
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -637,8 +639,8 @@ By Joachim M. Bestenlehner
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
 
   <footer class="bd-footer">
   </footer>
