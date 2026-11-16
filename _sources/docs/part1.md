@@ -11,9 +11,9 @@ are examples to copy and paste into the Gemini chat window.
 
 Gemini has 3 options:
 
-1. Flash: All-around help
-2. Thinking: Solves complex problems
-3. Pro: Advanced reasoning (good for coding)
+1. 4 Hydrogen: Every Day Help
+2. 4 Hydrogen Thinking: Solves complex problems
+3. Pro: Detailed Research (good for coding)
 
 Thinking and Pro have less tokens available per day. 
 
